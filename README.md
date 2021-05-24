@@ -3,6 +3,8 @@
 
 In this repo you can find the data and the scripts to run evaluation of the structural knowledge of contextualised embeddings.
 
+This work deals with the sensitivity of three multilingual transformer-models to syntactic perturbations which can be considered as *structural adversarial probing*. We introduced a set of three tasks, different in the syntactic level of perturbation, for three Indo-European languages: English, Russian and Swedish. We analyse the models' performance on the proposed tasks with the help of perplexity-based methods and probing over attention graphs and intermediate hidden representations produced by the models. 
+
 ### Tasks
 We present a suit of 3 probing tasks for three languages: English, Swedish and Russian:
 
@@ -25,8 +27,6 @@ The code supports three models, available via the HuggingFace library:
  and its two variants, Mean LP and Pen LP, normalised by length.
  
  ### Results
-
-This work deals with the sensitivity of three multilingual transformer-models to syntactic perturbations which can be considered as *structural adversarial probing*. We introduced a set of three tasks, different in the syntactic level of perturbation, for three Indo-European languages: English, Russian and Swedish. We analyse the models' performance on the proposed tasks with the help of perplexity-based methods and probing over attention graphs and intermediate hidden representations produced by the models. 
 
 The results demonstrate, that
 1. **The syntactic perturbations are difficult to recover** using only the layer-wise attention weights and intermediate hidden representations produced over sentences with masked positions. While such representations show some ability to capture the syntactic structure, they fail to distinguish between grammatical and perturbed sentences, except for the extreme case of randomly shuffled word order (**RandomShift**). This seems counter-intuitive as the encoders have previously shown to display sufficient word order knowledge. 
