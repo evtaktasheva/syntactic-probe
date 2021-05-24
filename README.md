@@ -6,7 +6,7 @@ In this repo you can find the data and the scripts to run evaluation of the stru
 ### Tasks
 We present a suit of 3 probing tasks for three languages: English, Swedish and Russian:
 
-1. The (**NgramShift**) task tests whether contextual representations are sensitive to perturbations in local dependencies.
+1. The (**NShift**) task tests whether contextual representations are sensitive to perturbations in local dependencies.
 2. The (**ClauseShift**) task probes  the encoder sensitivity to long-range dependencies by perturbing a sentence at the clause-level.
 3. The (**RandomShift**) task test the ability of the encoder to restore the tree of a sentence corrupted by random shuffling of the words.
 
@@ -25,8 +25,15 @@ The code supports three models, available via the HuggingFace library:
  and its two variants, Mean LP and Pen LP, normalised by length.
  
  ### Results
- 
- TBD
+
+This work deals with the sensitivity of three multilingual transformer-models to syntactic perturbations which can be considered as *structural adversarial probing*. We introduced a set of three tasks, different in the syntactic level of perturbation, for three Indo-European languages: English, Russian and Swedish. We analyse the models' performance on the proposed tasks with the help of perplexity-based methods and probing over attention graphs and intermediate hidden representations produced by the models. 
+
+The results demonstrate, that
+1. **The syntactic perturbations are difficult to recover** using only the layer-wise attention weights and intermediate hidden representations produced over sentences with masked positions. While such representations show some ability to capture the syntactic structure, they fail to distinguish between grammatical and perturbed sentences, except for the extreme case of randomly shuffled word order (**RandomShift**). This seems counter-intuitive as the encoders have previously shown to display sufficient word order knowledge. 
+2. Despite overall low sensitivity to syntactic perturbations, **the nature of such permutations can, to a degree, influence the models' performance**. All the encoders showed higher sensitivity to more extreme structure perturbations, namely, random shuffling of the words (**RandomShift**) and little to no sensitivity to the inversion within syntactic groups (**Nshift**).
+3. **The encoders exhibit different behavior depending on a language**. Contrary to previous works, our probes showed some distinctive features of the encoders depending on the language. Structural information is mostly learnt in a similar manner for Russian and English. **XLM-R** generally captures the properties at the middle-to-higher layers, **M-BART** distributes this information over all the layers and **M-BERT** -- at the higher layers or evenly. For Swedish all the encoders seem to exhibit no special layers that learn sentence structure better. 
+
+All the graphs illustrating the performance of the encoders can be found in the `img` directory.
  
 ## Setup and Usage
 Clone this repo and install all the dependencies:
